@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+int broj_radnika;
+cin>>broj_radnika;
+int temp_pocetak;
+int temp_kraj;
+int temp_brojalo=0;
+int perma_pocetak;
+int perma_kraj;
+int perma_brojilo=0;
+int radno_vrijeme[broj_radnika][2];
+for(int i=0;i<broj_radnika;i++)
+{
+    cin>>radno_vrijeme[i][0]>>radno_vrijeme[i][1];
+}
+for(int i=0;i<broj_radnika;i++)
+{
+    temp_brojalo=0;
+    for(int j=1;j<broj_radnika;j++)
+    {
+        if(radno_vrijeme[i][0]==radno_vrijeme[j][0] && radno_vrijeme[i][1]==radno_vrijeme[j][1] )
+        {
+            temp_pocetak=radno_vrijeme[i][0];
+            temp_kraj=radno_vrijeme[i][1];
+            temp_brojalo+=1;
+        }
+
+    }
+    if(temp_brojalo>perma_brojilo)
+    {
+        perma_brojilo=temp_brojalo;
+        perma_kraj=temp_kraj;
+        perma_pocetak=temp_pocetak;
+    }
+    else if(temp_brojalo==perma_brojilo)
+    {
+        if(temp_kraj-temp_pocetak>perma_kraj-perma_pocetak ||temp_pocetak < perma_pocetak)
+        {
+            perma_brojilo=temp_brojalo;
+            perma_kraj=temp_kraj;
+            perma_pocetak=temp_pocetak;
+        }
+    }
+
+}
+cout<<endl;
+cout<<perma_pocetak<<" "<<perma_kraj;
+}

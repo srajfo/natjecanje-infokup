@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <math.h>
+#include <iomanip>
+using namespace std;
+long long int zbroj_Znamenaka(int i)
+{
+    int zbroj=0;
+    for(int j=0;i!=0;j++)
+    {
+        zbroj+=i%10;
+        i/=10;
+    }
+    return zbroj;
+}
+int main()
+{
+    int N;
+    int K;
+    cin>>N>>K;
+    long long int mnozitelj =pow(10,N);
+    long long int minimalan=0;
+    long long int maximalan=0;
+    int gledanje_broj=0;
+    cout<<mnozitelj<<endl;
+    for(int i=1*pow(10,N-1);i<mnozitelj;i++)
+    {   
+        gledanje_broj=zbroj_Znamenaka(i);
+        if(gledanje_broj==K)
+        {
+            minimalan=i;
+            break;
+        }   
+    }
+       for(int i=mnozitelj;i>minimalan+1;i--)
+    {
+        gledanje_broj=zbroj_Znamenaka(i);
+        if(gledanje_broj==K)
+        {
+           maximalan=i;
+           break;
+        }   
+    }
+    cout<<minimalan<<endl<<maximalan<<endl;
+}
